@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nourish&Flourish</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="video.css">
+    <link rel="stylesheet" href="bmi.css">
+    <link rel="stylesheet" href="game.css">
+
+    <style>
+        /* Inline CSS for demo purposes */
+        /* styles.css */
+body {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    background-color: #f9f9f9;
+    text-align: center; /* Center all elements */
+}
+
+header {
+    background-color: #ff6f61; /* Pink background */
+    padding: 20px;
+    color: white;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Increase spacing between videos */
+    margin: 20px 0;
+}
+
+.quest-container, .quiz-container, .reward-system, .difficulty-levels {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 60%; /* Center and limit width */
+    background-color: #e0f7fa; /* Light background for sections */
+}
+
+input[type="text"], input[type="number"], select, button {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Nourish&Flourish</h1>
+        <div class="search-container">
+            <input type="text" placeholder="Search..." id="search" name="search">
+            <button type="button" onclick="searchSection()">🔍</button>
+        </div>
+
+        <nav id="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#calculator">BMI Calculator</a></li>
+                <li>
+                    <a href="#games">Games</a>
+                    <ul>
+                        <li><a href="#nutriQuests">NutriQuests</a></li>
+                        <li><a href="#engagingQuizzes">Engaging Quizzes</a></li>
+                    </ul>
+                </li>
+                <li><a href="#login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="home">
+        <h2>Welcome to Nourish&Flourish</h2>
+     <p>Your go-to resource for healthy eating tips!</p>
+     <img src="https://fitness-nation.net/march-is-national-nutrition-month/.jpg" alt="Nourish and Flourish" style="max-width: 100%; height: auto;">
+
+         <p>Nourish & Flourish is an innovative platform designed to empower individuals to transform their eating habits for a healthier lifestyle. By providing engaging resources such as interactive videos, nutrition quests, and quizzes, the website encourages users to explore nutritious foods and establish sustainable eating practices. From daily challenges that promote the inclusion of fruits and vegetables to educational content that dispels common nutrition myths, Nourish & Flourish fosters a supportive community. Users can track their progress and earn rewards, making the journey toward better health enjoyable. This holistic approach not only educates but also inspires individuals to embrace positive dietary changes for lasting well-being.</p>
+        <h3>Watch Our Nutrition Videos</h3>
+        <div class="video-container">
+            <iframe width="320" height="180" src="https://www.youtube.com/embed/1taUvbCQVx0" frameborder="0" allowfullscreen></iframe>
+            <iframe width="320" height="180" src="https://www.youtube.com/embed/jpzSCEvEa1w" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </main>
+
+    <section id="calculator">
+        <h2>BMI Calculator</h2>
+        <form id="bmiForm" onsubmit="return false;">
+            <label for="age">Age (2-120):</label>
+            <input type="number" id="age" min="2" max="120" required>
+            <label>Gender:</label>
+            <label><input type="radio" name="gender" value="male" checked> Male</label>
+            <label><input type="radio" name="gender" value="female"> Female</label>
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height" min="1" required>
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" min="1" required>
+            <button type="button" onclick="calculateBMI()">Calculate</button>
+            <button type="reset">Clear</button>
+        </form>
+        <div id="result" class="result"></div>
+    </section>
+
+    <!-- NutriQuests Section -->
+    <section id="nutriQuests">
+        <h2>Nutrition Quests</h2>
+        <div class="quest-container">
+            <h3>Daily Challenges</h3>
+            <ul id="dailyChallenges">
+                <li>
+                    <input type="checkbox" onchange="toggleChallenge(this)"> Try a new vegetable
+                    <p>Explore a vegetable you haven't had before!</p>
+                </li>
+                <li>
+                    <input type="checkbox" onchange="toggleChallenge(this)"> Drink 2 liters of water
+                    <p>Hydrate yourself properly throughout the day.</p>
+                </li>
+                <li>
+                    <input type="checkbox" onchange="toggleChallenge(this)"> Add fruit to your breakfast
+                    <p>Enhance your morning meal with some fresh fruit.</p>
+                </li>
+                <li>
+                    <input type="checkbox" onchange="toggleChallenge(this)"> Walk for 30 minutes
+                    <p>A great way to get moving and improve your mood!</p>
+                </li>
+                <li>
+                    <input type="checkbox" onchange="toggleChallenge(this)"> Prepare a home-cooked meal
+                    <p>Challenge yourself to create a nutritious dish from scratch!</p>
+                </li>
+            </ul>
+            <h3>Weekly Challenges</h3>
+            <ul id="weeklyChallenges">
+                <li>
+                    <input type="checkbox" onchange="toggleChallenge(this)"> Make a healthy smoothie
+                    <p>Use your favorite fruits and vegetables for a delicious blend.</p>
+                </li>
+                <li>
+                    <input type="checkbox" onchange="toggleChallenge(this)"> Cook a vegetarian meal
+                    <p>Explore the flavors of plant-based nutrition.</p>
+                </li>
+                <li>
+                    <input type="checkbox" onchange="toggleChallenge(this)"> Try a new recipe using whole grains
+                    <p>Experiment with brown rice, quinoa, or whole wheat pasta.</p>
+                </li>
+                <li>
+                    <input type="checkbox" onchange="toggleChallenge(this)"> Meal prep for the week
+                    <p>Plan and prepare your meals to save time and eat healthier.</p>
+                </li>
+                <li>
+                    <input type="checkbox" onchange="toggleChallenge(this)"> Reduce sugar intake for the week
+                    <p>Be mindful of sugar in your diet; focus on natural options.</p>
+                </li>
+            </ul>
+        </div>
+        <div class="reward-system">
+            <h3>Earning Rewards</h3>
+            <button onclick="earnReward()">Complete a Challenge</button>
+            <p id="rewardMessage"></p>
+            <p>Total Points: <span id="totalPoints">0</span></p>
+        </div>
+        <div class="difficulty-levels">
+            <h3>Select Difficulty Level</h3>
+            <select id="difficultySelect" onchange="setDifficulty()">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <p id="selectedDifficulty"></p>
+        </div>
+    </section>
+
+    <!-- Engaging Quizzes Section -->
+    <section id="engagingQuizzes">
+        <h2>Engaging Quizzes</h2>
+        <p>Test your knowledge about nutrition facts, myths, and healthy eating habits!</p>
+        <div class="quiz-container">
+            <h3>Quiz: How Well Do You Know Nutrition?</h3>
+            <div id="quiz"></div>
+            <button onclick="submitQuiz()">Submit Answers</button>
+            <p id="resultMessage"></p>
+            <div id="badgeDisplay"></div>
+            <p>Total Points: <span id="totalPointsQuiz">0</span></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Nutrition Hub</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        let points = 0;
+
+        function searchSection() {
+            const searchInput = document.getElementById('search').value.toLowerCase();
+            const sections = {
+                home: document.getElementById('home'), 
+                calculator: document.getElementById('calculator'),
+                nutriQuests: document.getElementById('nutriQuests'),
+                engagingQuizzes: document.getElementById('engagingQuizzes')
+            };
+
+            const sectionKeys = Object.keys(sections);
+            const foundSection = sectionKeys.find(section => section.toLowerCase() === searchInput);
+
+            if (foundSection && sections[foundSection]) {
+                sections[foundSection].scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert("Section not found.");
+            }
+        }
+
+        function calculateBMI() {
+            const height = parseFloat(document.getElementById('height').value) / 100; // convert cm to meters
+            const weight = parseFloat(document.getElementById('weight').value);
+
+            if (height > 0 && weight > 0) {
+                const bmi = (weight / (height * height)).toFixed(2);
+                let category = '';
+
+                if (bmi < 18.5) {
+                    category = 'Underweight';
+                } else if (bmi < 24.9) {
+                    category = 'Normal weight';
+                } else if (bmi < 29.9) {
+                    category = 'Overweight';
+                } else {
+                    category = 'Obesity';
+                }
+
+                document.getElementById('result').innerText = `Your BMI is ${bmi}, which is considered ${category}.`;
+            } else {
+                alert('Please enter valid values for height and weight.');
+            }
+        }
+
+        function toggleChallenge(checkbox) {
+            if (checkbox.checked) {
+                points += 5;
+                checkbox.parentElement.style.textDecoration = "line-through";
+            } else {
+                points -= 5;
+                checkbox.parentElement.style.textDecoration = "none";
+            }
+            document.getElementById('totalPoints').innerText = points;
+        }
+
+        function earnReward() {
+            document.getElementById('rewardMessage').innerText = "Challenges completed! Great job!";
+        }
+
+        const questions = [
+            {
+                question: "What is the main source of energy for our body?",
+                options: ["Proteins", "Carbohydrates", "Vitamins"],
+                answer: "Carbohydrates"
+            },
+            {
+                question: "Which vitamin is mainly obtained from sunlight?",
+                options: ["Vitamin A", "Vitamin C", "Vitamin D"],
+                answer: "Vitamin D"
+            },
+            {
+                question: "How many servings of fruits and vegetables should you aim for daily?",
+                options: ["1-2", "3-5", "5-7"],
+                answer: "5-7"
+            },
+            {
+                question: "Which food is an excellent source of protein?",
+                options: ["Bread", "Chicken", "Ice Cream"],
+                answer: "Chicken"
+            },
+            {
+                question: "What type of fat should you limit in your diet?",
+                options: ["Unsaturated fat", "Saturated fat", "Trans fat"],
+                answer: "Trans fat"
+            }
+        ];
+
+        function loadQuiz() {
+            const quizContainer = document.getElementById('quiz');
+            questions.forEach((q, index) => {
+                let optionsHtml = q.options.map(option => 
+                    `<label><input type="radio" name="question${index}" value="${option}"> ${option}</label>`
+                ).join('');
+                quizContainer.innerHTML += `<div>
+                    <p>${q.question}</p>
+                    ${optionsHtml}
+                </div><br>`;
+            });
+        }
+
+        function submitQuiz() {
+            let score = 0; // Reset score for each quiz submission
+            const answers = questions.map((_, index) =>
+                document.querySelector(`input[name="question${index}"]:checked`)
+            );
+
+            answers.forEach((answer, index) => {
+                if (answer && answer.value === questions[index].answer) {
+                    score += 10; // Each correct answer gives 10 points
+                }
+            });
+
+            document.getElementById('resultMessage').innerText = `You scored ${score} points!`;
+            document.getElementById('totalPointsQuiz').innerText = score;
+            rewardUser(score);
+        }
+
+        function rewardUser(score) {
+            const badgeDisplay = document.getElementById('badgeDisplay');
+            badgeDisplay.innerHTML = ""; // Clear previous badges
+            // Add badge logic if necessary
+        }
+
+        window.onload = loadQuiz;
+    </script>
+</body>
+</html>
+</html>
